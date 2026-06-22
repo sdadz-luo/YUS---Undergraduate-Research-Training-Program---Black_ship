@@ -1,0 +1,97 @@
+# ============================================
+# Keil MDK-ARM IDE
+# ============================================
+
+# 用户特定的 IDE 配置文件（包含用户窗口布局、断点等）
+*.uvguix.*
+
+# IDE 选项文件（编译选项、调试器设置等，可根据需要取消注释以追踪团队共享配置）
+*.uvoptx
+
+# 调试配置
+DebugConfig/
+
+# J-Link 调试器设置
+JLinkSettings.*
+*.JLinkScript
+
+# ============================================
+# 构建输出
+# ============================================
+
+# 目标文件和列表文件
+Objects/
+Listings/
+
+# 编译生成的目标文件
+*.axf
+*.o
+*.d
+*.dep
+*.crf
+*.hex
+*.bin
+*.elf
+*.map
+*.htm
+*.lnp
+*.rpd
+*.sbd
+*.build_log.htm
+
+# ============================================
+# RA FSP (Flexible Software Package) 生成文件
+# ============================================
+
+# FSP 配置器输出
+output.rasc
+rasc_launcher.bat
+rasc_version.bat
+rasc_version.txt
+configuration.xml
+buildinfo.gpdsc
+bsp_linker_info.h
+
+# FSP 生成的配置头文件（由 FSP 配置器管理，重新生成后会覆盖）
+ra_cfg/
+
+# FSP 生成的源代码（由 FSP 配置器管理，重新生成后会覆盖）
+ra_gen/
+
+# FSP 生成的链接脚本
+fsp_gen.scat
+memory_regions.scat
+script/
+
+# ============================================
+# RA FSP SDK / CMSIS 库（外部依赖，无需纳入版本控制）
+# ============================================
+
+# RA FSP SDK 源代码（通过 RA Configuration 工具管理版本）
+ra/
+
+# Keil RTE（运行环境）生成文件
+RTE/
+
+# 编译器/链接器 via 文件（由构建工具生成）
+via/
+
+# ============================================
+# 操作系统 / 编辑器
+# ============================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+*.code-workspace
+
+# 编辑器临时文件
+*~
+*.swp
+*.swo
+*.bak
