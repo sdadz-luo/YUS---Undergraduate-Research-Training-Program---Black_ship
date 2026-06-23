@@ -10,7 +10,7 @@ void pwm_init(void){
 	
 }
 
-void pwm_setduty(float A, float B){
+void pwm_setduty(float B, float A){
 
     if (A < 0) {
         A = -A;
@@ -29,12 +29,9 @@ void pwm_setduty(float A, float B){
         R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_08_PIN_04, BSP_IO_LEVEL_LOW);
     }
 
-    A = (uint32_t)A; 
-    B = (uint32_t)B;
-
     if (A >= PWM_MAX) A = PWM_MAX;
     if (B >= PWM_MAX) B = PWM_MAX;
     // Ë«Â·PWMÊä³ö
-    R_GPT_DutyCycleSet(&g_timer6_ctrl, A, GPT_IO_PIN_GTIOCA);
-    R_GPT_DutyCycleSet(&g_timer6_ctrl, B, GPT_IO_PIN_GTIOCB);
+    R_GPT_DutyCycleSet(&g_timer6_ctrl, (uint32_t)A, GPT_IO_PIN_GTIOCA);
+    R_GPT_DutyCycleSet(&g_timer6_ctrl, (uint32_t)B, GPT_IO_PIN_GTIOCB);
 }

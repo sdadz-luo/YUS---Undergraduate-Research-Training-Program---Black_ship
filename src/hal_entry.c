@@ -16,10 +16,11 @@ void hal_entry(void)
 {
     /* ========== 外设初始化 ========== */
 
-    UART2_IMU_Init();
-    UART5_LoRa_Init();
-    DMAC_Init();
+    UART5_IMU_Init();
+    UART2_LoRa_Init();
+    UART9_GPS_Init();
     pwm_init();
+    gpt0_init();
 
     /* TODO: add your own code here */
 
@@ -27,7 +28,24 @@ void hal_entry(void)
 
 
 
+    if (gps_rx_complete){
+        // === gps_rx_buf[] 中已有一帧 GPS 数据（NMEA 字符串）===
+        // 在这里解析 gps_rx_buf 中的数据
     }
+
+    if (imu_rx_complete){
+        // === imu_rx_buf[] 中已有一帧完整数据 ===
+		GYRO.WzL=imu_rx_buf[6];
+		GYRO.WzH=imu_rx_buf[7];
+		GYRO.gyroZ=(float)((GYRO.WzH<<8)|GYRO.WzL)/32768*2000;
+		ANGEL.YawL=imu_rx_buf[17];          
+		ANGEL.YawH=imu_rx_buf[18];
+		ANGEL.angleZ=(float)((ANGEL.YawH<<8)|ANGEL.YawL)/32768*180;
+        imu_rx_complete = false;  // 标记数据已消费
+    }
+		
+
+	}
 
     /* Wake up 2nd core if this is first core and we are inside a multicore project. */
 #if (0 == _RA_CORE) && (1 == BSP_MULTICORE_PROJECT) && !BSP_TZ_NONSECURE_BUILD

@@ -181,8 +181,8 @@ FSP Configuration
       P115 C1 - - - - Disabled - - "BUS_ASYNCH0: A01; GPT4: GTIOC4A; SSI0: SSITXD0" - None - - 
       P200 C8 - - - - Disabled - - "ICU0: NMI" - None - - 
       P201 B8 - - - - Disabled - - "SYSTEM0: MD" - None - - 
-      P202 B12 - - - - Disabled - - "AGT3: AGTOB3; BUS_ASYNCH0: BC1; CAN0: CRX0; CTSU0: TS19; ETHERC_MII0: ET0_ERXD2; GPT5: GTIOC5B; ICU0: IRQ03; SCI2: SCK2; SCI9: RXD9; SCI9: SCL9; SDHI0: SD0DAT6; SPI0: MISOA" - None - - 
-      P203 D11 - - - - Disabled - - "AGT3: AGTOA3; BUS_ASYNCH0: A19; CAN0: CTX0; CTSU0: TS18; ETHERC_MII0: ET0_COL; GPT5: GTIOC5A; ICU0: IRQ02; SCI2: CTSRTS2; SCI9: SDA9; SCI9: TXD9; SDHI0: SD0DAT5; SPI0: MOSIA" - None - - 
+      P202 B12 SCI9_RXD9 - Low None "Peripheral mode" CMOS None "AGT3: AGTOB3; BUS_ASYNCH0: BC1; CAN0: CRX0; CTSU0: TS19; ETHERC_MII0: ET0_ERXD2; GPT5: GTIOC5B; ICU0: IRQ03; SCI2: SCK2; SCI9: RXD9; SCI9: SCL9; SDHI0: SD0DAT6; SPI0: MISOA" - IO - - 
+      P203 D11 SCI9_TXD9 - Low None "Peripheral mode" CMOS None "AGT3: AGTOA3; BUS_ASYNCH0: A19; CAN0: CTX0; CTSU0: TS18; ETHERC_MII0: ET0_COL; GPT5: GTIOC5A; ICU0: IRQ02; SCI2: CTSRTS2; SCI9: SDA9; SCI9: TXD9; SDHI0: SD0DAT5; SPI0: MOSIA" - IO - - 
       P204 A13 - - - - Disabled - - "AGT1: AGTIO1; BUS_ASYNCH0: A18; CAC0: CACREF; CTSU0: TS00; ETHERC_MII0: ET0_RX_DV; GPT_OPS0: GTIW; GPT4: GTIOC4B; SCI4: SCK4; SCI9: SCK9; SDHI0: SD0DAT4; SPI0: RSPCKA; SSI0: SSIBCK0; USB_FS0: USB_OVRCURB" - None - - 
       P205 E12 - - - - Disabled - - "AGT1: AGTO1; BUS_ASYNCH0: A16; CGC0: CLKOUT; CTSU0: TS01; ETHERC_MII0: ET0_WOL; ETHERC_RMII0: ET0_WOL; GPT_OPS0: GTIV; GPT4: GTIOC4A; ICU0: IRQ01; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4; SCI9: CTSRTS9; SDHI0: SD0DAT3; SPI0: SSLA0; SSI0: SSILRCK0; USB_FS0: USB_OVRCURA" - None - - 
       P206 D12 - - - - Disabled - - "BUS_ASYNCH0: WAIT; CEC0: CECIO; CTSU0: TS02; ETHERC_MII0: ET0_LINKSTA; ETHERC_RMII0: ET0_LINKSTA; GPT_OPS0: GTIU; ICU0: IRQ00; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4; SCI9: CTS9; SDHI0: SD0DAT2; SPI0: SSLA1; SSI0: SSIDATA0; USB_FS0: USB_VBUSEN" - None - - 
@@ -348,9 +348,6 @@ FSP Configuration
     RS-485 Support: Disable
     IrDA Support: Disabled
     
-  Module "Transfer (r_dmac)"
-    Parameter Checking: Default (BSP)
-    
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
       Name: g_ioport
@@ -515,7 +512,7 @@ FSP Configuration
       Extra: RS-485: DE Pin Polarity: Active High
       Extra: RS-485: DE Port Number: Disabled
       Extra: RS-485: DE Pin Number: Disabled
-      Interrupts: Callback: imu_callback
+      Interrupts: Callback: lora_callback
       Interrupts: Receive Interrupt Priority: Priority 12
       Interrupts: Transmit Data Empty Interrupt Priority: Priority 12
       Interrupts: Transmit End Interrupt Priority: Priority 12
@@ -524,6 +521,35 @@ FSP Configuration
     Instance "g_uart5 UART (r_sci_uart)"
       General: Name: g_uart5
       General: Channel: 5
+      General: Data Bits: 8bits
+      General: Parity: None
+      General: Stop Bits: 1bit
+      Baud: Baud Rate: 9600
+      Baud: Baud Rate Modulation: Disabled
+      Baud: Max Error (%): 5
+      Flow Control: CTS/RTS Selection: Hardware RTS
+      Flow Control: Software RTS Port: Disabled
+      Flow Control: Software RTS Pin: Disabled
+      Extra: Clock Source: Internal Clock
+      Extra: Start bit detection: Falling Edge
+      Extra: Noise Filter: Disable
+      Extra: Receive FIFO Trigger Level: Max
+      Extra: IrDA: Enable: Disabled
+      Extra: IrDA: RXD Polarity Switching: Normal
+      Extra: IrDA: TXD Polarity Switching: Normal
+      Extra: RS-485: DE Pin: Disable
+      Extra: RS-485: DE Pin Polarity: Active High
+      Extra: RS-485: DE Port Number: Disabled
+      Extra: RS-485: DE Pin Number: Disabled
+      Interrupts: Callback: imu_callback
+      Interrupts: Receive Interrupt Priority: Priority 12
+      Interrupts: Transmit Data Empty Interrupt Priority: Priority 12
+      Interrupts: Transmit End Interrupt Priority: Priority 12
+      Interrupts: Error Interrupt Priority: Priority 12
+      
+    Instance "g_uart9 UART (r_sci_uart)"
+      General: Name: g_uart9
+      General: Channel: 9
       General: Data Bits: 8bits
       General: Parity: None
       General: Stop Bits: 1bit
@@ -544,43 +570,9 @@ FSP Configuration
       Extra: RS-485: DE Pin Polarity: Active High
       Extra: RS-485: DE Port Number: Disabled
       Extra: RS-485: DE Pin Number: Disabled
-      Interrupts: Callback: lora_callback
+      Interrupts: Callback: gps_callback
       Interrupts: Receive Interrupt Priority: Priority 12
       Interrupts: Transmit Data Empty Interrupt Priority: Priority 12
       Interrupts: Transmit End Interrupt Priority: Priority 12
       Interrupts: Error Interrupt Priority: Priority 12
-      
-    Instance "g_transfer_imu_rx Transfer (r_dmac) SCI2 RXI (Receive data full)"
-      Name: g_transfer_imu_rx
-      Channel: 0
-      Mode: Repeat
-      Transfer Size: 1 Byte
-      Destination Address Mode: Incremented
-      Source Address Mode: Fixed
-      Repeat Area (Unused in Normal Mode): Destination
-      Number of Transfers: 1
-      Number of Blocks (Valid only in Repeat,Block or Repeat-Block Mode): 0
-      Activation Source: SCI2 RXI (Receive data full)
-      Callback: transfer_imu_rx_callback
-      Transfer End Interrupt Priority: Priority 8
-      Interrupt Frequency: Interrupt after all transfers have completed
-      Offset value (Valid only when address mode is Offset addition): 1
-      Source Buffer Size: 1
-      
-    Instance "g_transfer_lora_rx Transfer (r_dmac) SCI5 RXI (Receive data full)"
-      Name: g_transfer_lora_rx
-      Channel: 2
-      Mode: Repeat
-      Transfer Size: 1 Byte
-      Destination Address Mode: Incremented
-      Source Address Mode: Fixed
-      Repeat Area (Unused in Normal Mode): Destination
-      Number of Transfers: 1
-      Number of Blocks (Valid only in Repeat,Block or Repeat-Block Mode): 0
-      Activation Source: SCI5 RXI (Receive data full)
-      Callback: transfer_lora_rx_callback
-      Transfer End Interrupt Priority: Priority 8
-      Interrupt Frequency: Interrupt after all transfers have completed
-      Offset value (Valid only when address mode is Offset addition): 1
-      Source Buffer Size: 1
       
