@@ -77,12 +77,12 @@
       <configSetting altId="p406.gpio_mode.gpio_mode_out.low" configurationId="p406.gpio_mode"/>
       <configSetting altId="p501.gpio_mode.gpio_mode_peripheral" configurationId="p501.gpio_mode"/>
       <configSetting altId="p502.gpio_mode.gpio_mode_peripheral" configurationId="p502.gpio_mode"/>
-      <configSetting altId="p511.output.high" configurationId="p511"/>
-      <configSetting altId="p511.gpio_mode.gpio_mode_out.high" configurationId="p511.gpio_mode"/>
+      <configSetting altId="p511.output.low" configurationId="p511"/>
+      <configSetting altId="p511.gpio_mode.gpio_mode_out.low" configurationId="p511.gpio_mode"/>
       <configSetting altId="p702.gpio_mode.gpio_mode_peripheral" configurationId="p702.gpio_mode"/>
       <configSetting altId="p703.gpio_mode.gpio_mode_peripheral" configurationId="p703.gpio_mode"/>
-      <configSetting altId="p803.output.high" configurationId="p803"/>
-      <configSetting altId="p803.gpio_mode.gpio_mode_out.high" configurationId="p803.gpio_mode"/>
+      <configSetting altId="p803.output.low" configurationId="p803"/>
+      <configSetting altId="p803.gpio_mode.gpio_mode_out.low" configurationId="p803.gpio_mode"/>
       <configSetting altId="p804.output.low" configurationId="p804"/>
       <configSetting altId="p804.gpio_mode.gpio_mode_out.low" configurationId="p804.gpio_mode"/>
       <configSetting altId="sci2.rxd.p301" configurationId="sci2.rxd" isUsedByDriver="true" peripheral="SCI2"/>

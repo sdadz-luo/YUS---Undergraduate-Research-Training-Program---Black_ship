@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "uart.h"
 #include "headfile.h"
 
@@ -105,9 +106,9 @@ void DMAC_Init(void)
 
     /* ---------- IMU RX (DMAC0, SCI2 RXI) ---------- */
     /* 先配置传输信息再 open */
-    g_transfer_imu_rx_info.length = IMU_RX_BUF_SIZE;
-    g_transfer_imu_rx_info.p_src  = (void const *)&R_SCI2->RDR;
-    g_transfer_imu_rx_info.p_dest = (void *)imu_rx_buf;
+    g_transfer_imu_rx_cfg.p_info->length = IMU_RX_BUF_SIZE;
+    g_transfer_imu_rx_cfg.p_info->p_src  = (void const *)&R_SCI2->RDR;
+    g_transfer_imu_rx_cfg.p_info->p_dest = (void *)imu_rx_buf;
 
     err = g_transfer_on_dmac.open(&g_transfer_imu_rx_ctrl, &g_transfer_imu_rx_cfg);
     assert(FSP_SUCCESS == err);
@@ -116,9 +117,9 @@ void DMAC_Init(void)
     assert(FSP_SUCCESS == err);
 
     /* ---------- LoRa RX (DMAC2, SCI5 RXI) ---------- */
-    g_transfer_lora_rx_info.length = LORA_RX_BUF_SIZE;
-    g_transfer_lora_rx_info.p_src  = (void const *)&R_SCI5->RDR;
-    g_transfer_lora_rx_info.p_dest = (void *)lora_rx_buf;
+    g_transfer_lora_rx_cfg.p_info->length = LORA_RX_BUF_SIZE;
+    g_transfer_lora_rx_cfg.p_info->p_src  = (void const *)&R_SCI5->RDR;
+    g_transfer_lora_rx_cfg.p_info->p_dest = (void *)lora_rx_buf;
 
     err = g_transfer_on_dmac.open(&g_transfer_lora_rx_ctrl, &g_transfer_lora_rx_cfg);
     assert(FSP_SUCCESS == err);
@@ -140,12 +141,12 @@ void IMU_DMAC_Reset(void)
     imu_rx_complete = false;
 
     /* 更新 info 结构体中的地址和长度 */
-    g_transfer_imu_rx_info.length = IMU_RX_BUF_SIZE;
-    g_transfer_imu_rx_info.p_src  = (void const *)&R_SCI2->RDR;
-    g_transfer_imu_rx_info.p_dest = (void *)imu_rx_buf;
+    g_transfer_imu_rx_cfg.p_info->length = IMU_RX_BUF_SIZE;
+    g_transfer_imu_rx_cfg.p_info->p_src  = (void const *)&R_SCI2->RDR;
+    g_transfer_imu_rx_cfg.p_info->p_dest = (void *)imu_rx_buf;
 
     /* 重新配置 DMAC */
-    err = g_transfer_on_dmac.reconfigure(&g_transfer_imu_rx_ctrl, &g_transfer_imu_rx_info);
+    err = g_transfer_on_dmac.reconfigure(&g_transfer_imu_rx_ctrl, g_transfer_imu_rx_cfg.p_info);
     assert(FSP_SUCCESS == err);
 }
 
@@ -156,11 +157,11 @@ void LORA_DMAC_Reset(void)
 
     lora_rx_complete = false;
 
-    g_transfer_lora_rx_info.length = LORA_RX_BUF_SIZE;
-    g_transfer_lora_rx_info.p_src  = (void const *)&R_SCI5->RDR;
-    g_transfer_lora_rx_info.p_dest = (void *)lora_rx_buf;
+    g_transfer_lora_rx_cfg.p_info->length = LORA_RX_BUF_SIZE;
+    g_transfer_lora_rx_cfg.p_info->p_src  = (void const *)&R_SCI5->RDR;
+    g_transfer_lora_rx_cfg.p_info->p_dest = (void *)lora_rx_buf;
 
-    err = g_transfer_on_dmac.reconfigure(&g_transfer_lora_rx_ctrl, &g_transfer_lora_rx_info);
+    err = g_transfer_on_dmac.reconfigure(&g_transfer_lora_rx_ctrl, g_transfer_lora_rx_cfg.p_info);
     assert(FSP_SUCCESS == err);
 }
 

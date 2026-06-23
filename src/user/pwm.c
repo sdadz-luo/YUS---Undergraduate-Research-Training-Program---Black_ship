@@ -10,20 +10,27 @@ void pwm_init(void){
 	
 }
 
-void pwm_setduty(uint32_t A, uint32_t B){
-    
-    A = (uint32_t)A; B = (uint32_t)B;
+void pwm_setduty(float A, float B){
 
     if (A < 0) {
         A = -A;
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_05_PIN_11, BSP_IO_LEVEL_LOW);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_06, BSP_IO_LEVEL_HIGH);
     }else{
-
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_05_PIN_11, BSP_IO_LEVEL_HIGH);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_06, BSP_IO_LEVEL_LOW);
     }
     if (B < 0) {
         B = -B;
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_08_PIN_03, BSP_IO_LEVEL_LOW);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_08_PIN_04, BSP_IO_LEVEL_HIGH);
     }else{
-
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_08_PIN_03, BSP_IO_LEVEL_HIGH);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_08_PIN_04, BSP_IO_LEVEL_LOW);
     }
+
+    A = (uint32_t)A; 
+    B = (uint32_t)B;
 
     if (A >= PWM_MAX) A = PWM_MAX;
     if (B >= PWM_MAX) B = PWM_MAX;

@@ -235,7 +235,7 @@ FSP Configuration
       P506 R5 - - - - Disabled - - "ADC1: AN122; ICU0: IRQ15; SCI6: SDA6; SCI6: TXD6" - None - - 
       P507 N6 - - - - Disabled - - "ADC1: AN123; SCI5: SCK5; SCI6: SCK6" - None - - 
       P508 R6 - - - - Disabled - - "ADC1: AN124; SCI5: CTSRTS5" - None - - 
-      P511 P13 GPIO - Low None "Output mode (Initial High)" CMOS - "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
+      P511 P13 GPIO - Low None "Output mode (Initial Low)" CMOS - "CAN1: CRX1; GPT0: GTIOC0B; ICU0: IRQ15; IIC1: SDA1; SCI4: RXD4; SCI4: SCL4" - IO - - 
       P512 R14 - - - - Disabled - - "CAN1: CTX1; GPT0: GTIOC0A; ICU0: IRQ14; IIC1: SCL1; SCI4: SDA4; SCI4: TXD4" - None - - 
       P513 N12 - - - - Disabled - - "SCI5: RXD5; SCI5: SCL5" - None - - 
       P600 L1 - - - - Disabled - - "AGT3: AGTIO3; BUS_ASYNCH0: RD; CAC0: CACREF; CGC0: CLKOUT; GPT6: GTIOC6B; OSPI0: OMSIO4; SCI9: SCK9" - None - - 
@@ -266,7 +266,7 @@ FSP Configuration
       P800 N3 - - - - Disabled - - "ADC1: AN125; AGT4: AGTOA4; BUS_ASYNCH0: D14; SCI0: CTS0" - None - - 
       P801 R1 - - - - Disabled - - "ADC1: AN126; AGT4: AGTOB4; BUS_ASYNCH0: D15; SCI8: CTS8" - None - - 
       P802 P2 - - - - Disabled - - "ADC1: AN127; ICU0: IRQ03" - None - - 
-      P803 R2 GPIO - Low None "Output mode (Initial High)" CMOS - "ADC1: AN128; ICU0: IRQ02" - IO - - 
+      P803 R2 GPIO - Low None "Output mode (Initial Low)" CMOS - "ADC1: AN128; ICU0: IRQ02" - IO - - 
       P804 P3 GPIO - Low None "Output mode (Initial Low)" CMOS - "ICU0: IRQ01" - IO - - 
       P805 R13 - - - - Disabled - - "SCI5: SDA5; SCI5: TXD5" - None - - 
       P806 P12 - - - - Disabled - - "ICU0: IRQ00" - None - - 

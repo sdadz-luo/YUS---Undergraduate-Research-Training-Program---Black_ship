@@ -16,20 +16,16 @@ void hal_entry(void)
 {
     /* ========== 外设初始化 ========== */
 
-    /* 初始化 IMU 串口 (SCI2/UART2) */
     UART2_IMU_Init();
-
-    /* 初始化 LoRa 串口 (SCI5/UART5) */
     UART5_LoRa_Init();
-
-    /* 初始化 DMAC（IMU + LoRa DMA 接收） */
     DMAC_Init();
+    pwm_init();
 
     /* TODO: add your own code here */
 
     while(1){
 
-        
+
 
     }
 
