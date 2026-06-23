@@ -7,6 +7,43 @@
         </peripheral>
         <peripheral name="PORT3.CM33" group="PORT">
             <slot name="P300.CM33" secure="true"/>
+            <slot name="P301.CM33" secure="true"/>
+            <slot name="P302.CM33" secure="true"/>
+        </peripheral>
+        <peripheral name="PORT4.CM33" group="PORT">
+            <slot name="P406.CM33" secure="true"/>
+        </peripheral>
+        <peripheral name="PORT5.CM33" group="PORT">
+            <slot name="P501.CM33" secure="true"/>
+            <slot name="P502.CM33" secure="true"/>
+            <slot name="P511.CM33" secure="true"/>
+        </peripheral>
+        <peripheral name="PORT7.CM33" group="PORT">
+            <slot name="P702.CM33" secure="true"/>
+            <slot name="P703.CM33" secure="true"/>
+        </peripheral>
+        <peripheral name="PORT8.CM33" group="PORT">
+            <slot name="P803.CM33" secure="true"/>
+            <slot name="P804.CM33" secure="true"/>
+        </peripheral>
+        <peripheral name="GPT6.CM33" group="GPT" security="s"/>
+        <peripheral name="GPT0.CM33" group="GPT" security="s"/>
+        <peripheral name="SCI2.CM33" group="SCI" security="s"/>
+        <peripheral name="SCI5.CM33" group="SCI" security="s"/>
+        <peripheral name="DMA_DMAC0.CM33" group="DMA_DMAC" security="s"/>
+        <peripheral name="DMA_DMAC2.CM33" group="DMA_DMAC" security="s"/>
+        <peripheral name="ICU.CM33">
+            <slot name="IRQ0.CM33" secure="true"/>
+            <slot name="IRQ1.CM33" secure="true"/>
+            <slot name="IRQ2.CM33" secure="true"/>
+            <slot name="IRQ3.CM33" secure="true"/>
+            <slot name="IRQ4.CM33" secure="true"/>
+            <slot name="IRQ5.CM33" secure="true"/>
+            <slot name="IRQ6.CM33" secure="true"/>
+            <slot name="IRQ7.CM33" secure="true"/>
+            <slot name="IRQ8.CM33" secure="true"/>
+            <slot name="IRQ9.CM33" secure="true"/>
+            <slot name="IRQ10.CM33" secure="true"/>
         </peripheral>
     </partition>
 </azone>

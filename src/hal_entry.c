@@ -1,5 +1,5 @@
 #include "hal_data.h"
-#include "host_computer.h"
+#include "headfile.h"
 
 #if (1 == BSP_MULTICORE_PROJECT) && BSP_TZ_SECURE_BUILD
 bsp_ipc_semaphore_handle_t g_core_start_semaphore =
@@ -14,7 +14,24 @@ bsp_ipc_semaphore_handle_t g_core_start_semaphore =
  **********************************************************************************************************************/
 void hal_entry(void)
 {
+    /* ========== 外设初始化 ========== */
+
+    /* 初始化 IMU 串口 (SCI2/UART2) */
+    UART2_IMU_Init();
+
+    /* 初始化 LoRa 串口 (SCI5/UART5) */
+    UART5_LoRa_Init();
+
+    /* 初始化 DMAC（IMU + LoRa DMA 接收） */
+    DMAC_Init();
+
     /* TODO: add your own code here */
+
+    while(1){
+
+        
+
+    }
 
     /* Wake up 2nd core if this is first core and we are inside a multicore project. */
 #if (0 == _RA_CORE) && (1 == BSP_MULTICORE_PROJECT) && !BSP_TZ_NONSECURE_BUILD
