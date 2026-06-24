@@ -4,28 +4,43 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/* ========== IMU 接收 (SCI5/UART5) ========== */
-#define IMU_RX_BUF_SIZE     22      /* IMU 数据包长度（根据实际IMU模块调整）*/
+/* ===================== 缓冲区大小 ===================== */
+#define IMU_RX_BUF_SIZE     22      /* JY901B 两帧 11x2 */
+#define LORA_RX_BUF_SIZE    256     /* DMAC 单次传输长度 */
+#define GPS_RX_BUF_SIZE     128     /* NMEA 语句最大长度 */
+
+/* ===================== 方向定义 ===================== */
+#define DIR_FORWARD     0
+#define DIR_BACKWARD    1
+#define DIR_LEFT        2
+#define DIR_RIGHT       3
+
+/* ===================== LoRa 组件编号 ===================== */
+#define CMD_LIGHT       0x01
+#define CMD_PUMP        0x02
+#define CMD_GIMBAL_UD   0x03
+#define CMD_GIMBAL_LR   0x04
+#define CMD_ARM_SERVO   0x05
+#define CMD_ARM_DUTY    0x06
+#define CMD_SPEED       0x07
+
+/* ===================== 接收缓冲区 ===================== */
 extern volatile uint8_t  imu_rx_buf[IMU_RX_BUF_SIZE];
 extern volatile bool     imu_rx_complete;
 
-/* ========== LoRa 接收 (SCI2/UART2) ========== */
-#define LORA_RX_BUF_SIZE    256     /* LoRa 数据包最大长度 */
 extern volatile uint8_t  lora_rx_buf[LORA_RX_BUF_SIZE];
 extern volatile bool     lora_rx_complete;
 
-/* ========== GPS 接收 (SCI9/UART9) ========== */
-#define GPS_RX_BUF_SIZE     128     /* GPS NMEA 数据包最大长度 */
 extern volatile uint8_t  gps_rx_buf[GPS_RX_BUF_SIZE];
 extern volatile bool     gps_rx_complete;
 
-/* ========== 函数声明 ========== */
-void UART5_IMU_Init(void);          /* IMU串口初始化 (SCI5) */
-void UART2_LoRa_Init(void);         /* LoRa串口初始化 (SCI2) */
-void UART9_GPS_Init(void);          /* GPS串口初始化 (SCI9) */
-void DMAC_Init(void);               /* DMAC初始化 (IMU+LoRa+GPS) */
-void IMU_DMAC_Reset(void);          /* IMU DMAC重置 */
-void LORA_DMAC_Reset(void);         /* LoRa DMAC重置 */
-void GPS_DMAC_Reset(void);          /* GPS DMAC重置 */
+/* ===================== 函数声明 ===================== */
+void UART5_IMU_Init(void);
+void UART2_LoRa_Init(void);
+void UART9_GPS_Init(void);
+void DMAC_Init(void);
+void IMU_DMAC_Reset(void);
+void LORA_DMAC_Reset(void);
+void GPS_DMAC_Reset(void);
 
 #endif

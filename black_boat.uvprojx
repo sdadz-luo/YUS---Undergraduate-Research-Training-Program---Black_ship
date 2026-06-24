@@ -398,16 +398,6 @@
               <FilePath>.\src\hal_warmstart.c</FilePath>
             </File>
             <File>
-              <FileName>control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\user\control.c</FilePath>
-            </File>
-            <File>
-              <FileName>control.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\user\control.h</FilePath>
-            </File>
-            <File>
               <FileName>gpt.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\user\gpt.c</FilePath>
@@ -476,16 +466,6 @@
               <FileName>host_computer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\user\host_computer.h</FilePath>
-            </File>
-            <File>
-              <FileName>control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\user\control.c</FilePath>
-            </File>
-            <File>
-              <FileName>control.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\user\control.h</FilePath>
             </File>
             <File>
               <FileName>pid.c</FileName>

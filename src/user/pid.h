@@ -1,6 +1,26 @@
 #ifndef PID_H_
 #define PID_H_
 
+typedef struct {
+    float kp, ki, kd;
+    float error, error_last, error_last2;
+    float integral, maxintegral;
+    float output, output_1, maxOutput;
+    float target;
+    float dead;
+} pid;
 
+void PID_init(pid *pid_struct,
+              float kp,
+              float ki,
+              float kd,
+              float maxIntegral,
+              float maxOutput,
+              float target,
+              float dead);
+void pid_init(void);
+void pid_target(pid *pid_struct, float target);
+void pid_change(pid *pid_struct, float kp, float ki, float kd);
+float pid_location(pid *pid_struct, float now_value);
 
 #endif
