@@ -2,7 +2,7 @@
 #include "headfile.h"
 
 /* LoRa 控制变量：v=速度(0-10), move=方向(0-3) */
-uint8_t v = 0, move = 0;
+uint8_t move_flag = 0, v = 0, move = 0;
 
 #if (1 == BSP_MULTICORE_PROJECT) && BSP_TZ_SECURE_BUILD
 bsp_ipc_semaphore_handle_t g_core_start_semaphore = { .semaphore_num = 0 };

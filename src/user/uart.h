@@ -23,6 +23,7 @@
 #define CMD_ARM_SERVO   0x05
 #define CMD_ARM_DUTY    0x06
 #define CMD_SPEED       0x07
+#define CMD_SWITCH      0x08
 
 /* ===================== Ω” ’ª∫≥Â«¯ ===================== */
 extern volatile uint8_t  imu_rx_buf[IMU_RX_BUF_SIZE];

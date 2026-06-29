@@ -2,8 +2,8 @@
 #include "headfile.h"
 #include "uart.h"
 
-/* 引用于 hal_entry.c 的速度和方向变量 */
-extern uint8_t v, move;
+/* 引用于 hal_entry.c 的控制变量 */
+extern uint8_t v, move, move_flag;
 
 /* printf 发送完成标志 */
 static volatile bool uart_send_complete_flag = false;
@@ -86,8 +86,11 @@ void lora_callback(uart_callback_args_t *p_args)
             if (lora_pkt_idx == 6 && lora_pkt[0] == 0xEE
                 && lora_pkt[1] == 0x02 && lora_pkt[5] == 0xFF)
             {
-                if (lora_pkt[2] == CMD_SPEED && calc_crc8(lora_pkt, 4) == lora_pkt[4])
-                    v = lora_pkt[3];
+                if (calc_crc8(lora_pkt, 4) == lora_pkt[4])
+                {
+                    if (lora_pkt[2] == CMD_SPEED)   v = lora_pkt[3];
+                    if (lora_pkt[2] == CMD_SWITCH)  move_flag = lora_pkt[3];
+                }
                 lora_pkt_start = false;
             }
             /* --- 摇杆包 (7B): CC 01 白方向 02 黑方向 CRC8 33 --- */
