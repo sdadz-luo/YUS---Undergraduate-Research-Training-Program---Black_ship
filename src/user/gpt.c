@@ -39,6 +39,10 @@ void gpt0_callback(timer_callback_args_t *p_args)
     {
         switch (move)
         {
+            case DIR_STOP:    /* 停止 */
+                pwm_l = 0;
+                pwm_r = 0;
+                break;
             case DIR_LEFT:    /* 左转：左轮反转，右轮正转，关闭 PID */
                 pwm_l = -pwm_l;
                 pwm_turn = 0;
@@ -51,7 +55,7 @@ void gpt0_callback(timer_callback_args_t *p_args)
                 pwm_l = -pwm_l;
                 pwm_r = -pwm_r;
                 break;
-            default: break;
+            default: break;   /* DIR_FORWARD: 前进，不影响 PID */
         }
     }
 

@@ -10,10 +10,11 @@
 #define GPS_RX_BUF_SIZE     128     /* NMEA 语句最大长度 */
 
 /* ===================== 方向定义 ===================== */
-#define DIR_FORWARD     0
-#define DIR_BACKWARD    1
-#define DIR_LEFT        2
-#define DIR_RIGHT       3
+#define DIR_STOP        0
+#define DIR_FORWARD     1
+#define DIR_BACKWARD    2
+#define DIR_LEFT        3
+#define DIR_RIGHT       4
 
 /* ===================== LoRa 组件编号 ===================== */
 #define CMD_LIGHT       0x01
